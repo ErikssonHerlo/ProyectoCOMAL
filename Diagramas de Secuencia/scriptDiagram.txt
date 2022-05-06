@@ -1,0 +1,317 @@
+/**
+ * Inicio de Sesion
+ */
+
+ @startuml
+!theme materia
+ title "Diagrama de Secuencias - Inicio de Sesión"
+ 
+ actor User
+ boundary "UI"
+ control "Backend" as Back
+ database "Database" as DB
+ 
+ User -> UI : Ingreso de Credenciales
+ UI -> Back : Validación de Datos
+ Back -> DB : Comprobación de Credenciales
+ DB -> Back : Credenciales Validas
+ Back-> UI : Ingreso al Sistema segun Tipo de Usuario
+ @enduml
+
+ /**
+ * Cerrar Sesion
+ */
+@startuml
+
+!theme materia
+
+title "Diagrama de Secuencias - Cerrar Sesión"
+
+actor User
+boundary "UI"
+control "Backend" as Back
+database "Database" as DB
+
+User -> UI : Cerrar Sesión
+UI -> Back : Petición
+Back -> Back : Finalización de Sesión actual
+Back-> UI : Interfaz de Inicio del Sistema
+@enduml
+
+ /**
+ * Diagrama de Secuencias - Visualizar Productos/Trueques"
+ */
+@startuml
+!theme materia
+
+ title "Diagrama de Secuencias - Visualizar Productos/Trueques"
+ 
+ actor Cliente
+ boundary "UI"
+ control "Backend" as Back
+ database "Database" as DB
+ 
+ Cliente -> UI : Visualizacion
+ UI -> Back : Filtrado por Categorias/Búsqueda
+ Back -> DB : Datos de Productos
+ DB -> Back : Resultados
+ Back-> UI : Visualización de Productos/Trueques
+ @enduml
+
+ -----------------------------------------------------------------
+ @startuml
+
+!theme materia
+
+ title "Diagrama de Secuencias - CRUD de Productos"
+ 
+ actor Cliente
+ boundary "UI"
+ control "Backend" as Back
+ database "Database" as DB
+ 
+ Cliente -> UI : Ingreso de Datos
+ UI -> Back : Verificacion de Datos
+ Back -> DB : CRUD de Productos
+ DB -> Back : Confirmacion
+ Back-> UI : Visualizacion CRUD
+ @enduml
+
+  -----------------------------------------------------------------
+ @startuml
+
+!theme materia
+
+ title "Diagrama de Secuencias - CRUD de Trueques"
+ 
+ actor Cliente
+ boundary "UI"
+ control "Backend" as Back
+ database "Database" as DB
+ 
+ Cliente -> UI : Ingreso de Datos
+ UI -> Back : Verificacion de Datos
+ Back -> DB : CRUD de Trueques
+ DB -> Back : Confirmacion
+ Back-> UI : Visualizacion CRUD
+ @enduml
+
+  -----------------------------------------------------------------
+  @startuml
+
+!theme materia
+
+ title "Diagrama de Secuencias - CRUD de Reseñas"
+ 
+ actor Cliente
+ boundary "UI"
+ control "Backend" as Back
+ database "Database" as DB
+ 
+ Cliente -> UI : Ingreso de Datos
+ UI -> Back : Verificacion de Datos
+ Back -> DB : CRUD de Reseñas
+ DB -> Back : Confirmacion
+ Back-> UI : Visualizacion CRUD
+ @enduml
+
+ -----------------------------------------------------
+   @startuml
+
+!theme materia
+
+ title "Diagrama de Secuencias - CRUD de Categorias"
+ 
+ actor Administrador
+ boundary "UI"
+ control "Backend" as Back
+ database "Database" as DB
+ 
+ Administrador -> UI : Ingreso de Datos
+ UI -> Back : Verificacion de Datos
+ Back -> DB : CRUD de Categorias
+ DB -> Back : Confirmacion
+ Back-> UI : Visualizacion CRUD
+ @enduml
+ ----------------------------------------------------
+
+   @startuml
+
+!theme materia
+
+ title "Diagrama de Secuencias - Realizar Oferta"
+ 
+ actor Vendedor
+ actor Cliente
+ 
+ boundary "UI"
+ control "Backend" as Back
+ database "Database" as DB
+ 
+ Cliente -> UI : Ingresar oferta
+ UI -> Back : Validación de Disponibilidad y Precio
+ Back -> DB : Ingreso de la Oferta
+ DB -> Back : Confirmacion
+ Back-> Cliente : Confirmacion de la Oferta
+ Back-> Vendedor : Oferta Nueva
+
+ @enduml
+ --------------------------------------------------
+
+   @startuml
+
+!theme materia
+
+ title "Diagrama de Secuencias - Comprar Producto"
+ 
+ actor Vendedor
+ actor Cliente
+ 
+ boundary "UI"
+ control "Backend" as Back
+ database "Database" as DB
+ 
+ Cliente -> UI : Confirma la Compra
+ Cliente -> UI : Ingresa los Datos de Pago y Envio
+ UI -> Back : Validación de Disp*onibilidad y Pago
+ Back -> DB : Registro de la Compra
+ DB -> Back : Confirmacion
+ Back -> Back : Generación de Envio
+ Back-> Cliente : Confirmacion de la Compra y Envio
+ Back-> Vendedor : Transacción Completada
+
+ @enduml
+ -----------------------------------------------------
+   @startuml
+
+!theme materia
+
+ title "Diagrama de Secuencias - Vender Producto"
+ 
+ actor Vendedor
+ actor Cliente
+ 
+ boundary "UI"
+ control "Backend" as Back
+ database "Database" as DB
+ 
+ Cliente -> UI : Confirma la Compra
+ Cliente -> UI : Ingresa los Datos de Pago y Envio
+ UI -> Back : Validación de Disponibilidad y Pago
+ Back -> DB : Registro de la Venta
+ DB -> Back : Confirmacion
+ Back -> Back : Generación de Envio
+ Back-> Cliente : Confirmacion de la Compra y Envio
+ Back-> Vendedor : Transacción Completada
+
+ @enduml
+ --------------------------------------------------------
+   @startuml
+
+!theme materia
+
+ title "Diagrama de Secuencias - Realizar Trueque"
+ 
+ actor Cliente2
+ actor Cliente1
+ 
+ boundary "UI"
+ control "Backend" as Back
+ database "Database" as DB
+ 
+ Cliente1 -> UI : Confirmación del Trueque
+ Cliente1 -> UI : Ingresa los Datos del Cambio y Envio
+ UI -> Back : Validación de Disponibilidad y Envio
+ Back -> DB : Registro del Trueque
+ DB -> Back : Confirmacion
+ Back -> Back : Generación de Envio
+ Back-> Cliente1 : Confirmacion de Trueque
+  Cliente2 -> UI : Confirmación del Trueque
+ Cliente2 -> UI : Ingresa los Datos del Cambio y Envio
+ UI -> Back : Validación de Disponibilidad y Envio
+ Back -> DB : Registro del Trueque
+ DB -> Back : Confirmacion
+ Back -> Back : Generación de Envio
+ Back-> Cliente2 : Confirmacion de Trueque
+ Back-> Cliente1 : Trueque Completado
+ Back-> Cliente2 : Trueque Completado
+
+ @enduml
+ ---------------------------------------------------
+ @startuml
+!theme materia
+
+ title "Diagrama de Secuencias - Visualizar Reportes"
+ 
+ actor "Cliente/Administrador" as CA
+ boundary "UI"
+ control "Backend" as Back
+ database "Database" as DB
+ 
+ CA -> UI : Visualizacion de Reportes
+ CA -> UI : Ingreso de Campos de Búsqueda
+ UI -> Back : Filtrado por Transacciones/Búsqueda
+ Back -> DB : Busqueda
+ DB -> Back : Resultados
+ Back-> UI : Visualización del Reporte
+ CA -> UI : Exportar Reporte
+ UI -> Back : Tipo de Reporte
+ Back -> Back : Generacion de Reporte
+ Back-> UI : Exportación del Reporte en PDF
+ 
+ @enduml
+--------------------------------------------
+@startuml
+!theme materia
+
+ title "Diagrama de Secuencias - Administrar Reseñas"
+ 
+ actor "Administrador" as Admin
+ boundary "UI"
+ control "Backend" as Back
+ database "Database" as DB
+ 
+ Admin -> UI : Visualizacion de Reseñas
+ Admin -> UI : Ingreso de Campos de Búsqueda
+ UI -> Back : Filtrado de Reseñas por Búsqueda
+ Back -> DB : Busqueda
+ DB -> Back : Resultados
+ Back-> UI : Visualización de las Reseñas
+ 
+ @enduml
+--------------------------------------------
+@startuml
+!theme materia
+
+ title "Diagrama de Secuencias - Crear Cliente"
+ 
+ actor "Visitante" as Visit
+ boundary "UI"
+ control "Backend" as Back
+ database "Database" as DB
+ 
+ Visit -> UI : Ingreso de los Datos del Cliente
+ UI -> Back : Verificación de Datos
+ Back -> DB : Registro
+ DB -> Back : Confirmación
+ Back-> UI : Confirmación de Registro
+ Back-> UI : Visualización de Pagina de Inicio del Sistema
+ 
+ @enduml
+----------------------------------------
+@startuml
+!theme materia
+
+ title "Diagrama de Secuencias - Visualizar Productos/Trueques"
+ 
+ actor Visitante
+ boundary "UI"
+ control "Backend" as Back
+ database "Database" as DB
+ 
+ Visitante -> UI : Visualizacion
+ UI -> Back : Filtrado por Categorias/Búsqueda
+ Back -> DB : Datos de Productos
+ DB -> Back : Resultados
+ Back-> UI : Visualización de Productos/Trueques
+ @enduml

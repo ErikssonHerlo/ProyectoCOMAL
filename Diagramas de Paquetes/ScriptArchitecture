@@ -1,0 +1,43 @@
+@startuml
+!theme materia
+title Arquitectura del Sistema - COMAL
+
+package "User" {
+    component [Web Service] as WS
+    component [Mobile App] as MA
+
+}
+
+
+package "Front End" {
+    component [react] as R
+    component [reactNative] as RN
+
+}
+
+node "APIREST" as AR{
+}
+ 
+package "Server" {
+    [NodeJs] as NJs
+    [Express] as Ex  
+
+} 
+
+database "Database\n" {
+    [MySQL] as DB
+
+}
+
+
+WS -->R
+MA -->RN
+R-->AR
+RN-->AR
+AR-->NJs
+NJs-right->Ex
+
+Ex-right->DB
+
+
+@enduml

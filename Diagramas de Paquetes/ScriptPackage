@@ -1,0 +1,38 @@
+@startuml
+!theme materia
+title Diagrama de Paquetes - COMAL
+
+package "Front End" {
+    component [routes] as r
+    component [views] as v
+  component [Componentes] as comp
+component [Web Service] as ws
+}
+
+node APIREST{
+}
+ 
+package "BackEnd" {
+    [Controlador] as CR
+    [Data Access] as DA  
+    [Entidades] as E
+} 
+
+database "MySQL\n" {
+    [Stored Procedures] as SP
+    [Database] as DB
+    [Functions & Triggers] as FT
+}
+
+r-->v
+v-->ws
+v-->comp
+comp-->ws
+ws--right-->APIREST
+APIREST --> CR
+CR-->DA
+DA-left->E
+DA -right-> DB
+DB --> SP
+DB --> FT
+@enduml
